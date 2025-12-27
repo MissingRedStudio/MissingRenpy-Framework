@@ -81,23 +81,24 @@ call narator(teks_narasi, duration=5.0)
 
 ## 🎬 Manajemen Adegan dan Pergerakan
 
-### 1\. Menampilkan/Menyembunyikan Karakter
+### 1. Menampilkan/Menyembunyikan Karakter
 
 | Aksi | Perintah | Catatan |
 | :--- | :--- | :--- |
 | **Muncul** | `show bulan normal at pos_left with default_chara_transition` | Selalu gunakan posisi `pos_...` yang sudah terdefinisi. |
 | **Menghilang** | `hide bulan with default_chara_transition` | Gunakan `with None` untuk menghilang instan. |
 
-### 2\. Pergerakan Karakter Tunggal
+### 2. Pergerakan Karakter Tunggal
 
 Gunakan `chara_move_transition` untuk efek geser yang halus.
 
 ```renpy
 # Pindahkan Bulan dari kiri ke tengah
 show bulan normal at pos_center with chara_move_transition 
+
 ```
 
-### 3\. Pergerakan Karakter Bersamaan (Concurrent)
+### 3. Pergerakan Karakter Bersamaan (Concurrent)
 
 Gunakan *statement* `with` di baris terpisah untuk menjalankan beberapa perintah `show`/`move` secara serempak.
 
@@ -107,18 +108,40 @@ show bulan normal at pos_center
 show senja normal at pos_far_right 
 show hari normal at pos_far_left 
 with chara_move_transition # Eksekusi semua perintah di atas secara serempak
+
 ```
 
-### 4\. `call setExpr` (Manual Dimming/Ekspresi)
+### 4. Membalik Karakter (Mirroring/Flip)
+
+Sistem ini mendukung pembalikan sprite secara otomatis pada posisi yang ditentukan tanpa merusak skala karakter (`zoom`). Cukup tambahkan akhiran `_f` pada nama posisi yang diinginkan.
+
+| Posisi | Normal (Hadap Kiri/Default) | Flipped (Hadap Kanan) |
+| --- | --- | --- |
+| **Left** | `at pos_left` | `at pos_left_f` |
+| **Center** | `at pos_center` | `at pos_center_f` |
+| **Right** | `at pos_right` | `at pos_right_f` |
+| **Far Left** | `at pos_far_left` | `at pos_far_left_f` |
+| **Far Right** | `at pos_far_right` | `at pos_far_right_f` |
+
+**Contoh Penggunaan:**
+
+```renpy
+# Menampilkan Bulan di kiri dan membaliknya agar menghadap ke kanan
+show bulan normal at pos_left_f with default_chara_transition
+
+```
+
+### 5. `call setExpr` (Manual Dimming/Ekspresi)
 
 Digunakan untuk mengatur ekspresi/status *dim* secara manual di luar *wrapper* `talk`.
 
 ```renpy
 call setExpr(list_tag_karakter, ekspresi, isListen)
+
 ```
 
-  * **`isListen=True`**: Karakter menjadi redup (*dim*).
-  * **`isListen=False`**: Karakter menjadi terang (siap bicara).
+* **`isListen=True`**: Karakter menjadi redup (*dim*).
+* **`isListen=False`**: Karakter menjadi terang (siap bicara).
 
 -----
 

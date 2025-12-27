@@ -4,16 +4,32 @@ define NORMAL_MATRIX = IdentityMatrix()
 define default_chara_transition = Dissolve(0.3)
 define chara_move_transition = MoveTransition(0.5)
 
-transform default_chara_pos(x_align):
-    zoom 0.75
-    xalign x_align
-    yalign 0
+transform chara_pos(x_align=0.5):
+    default_chara_pos(x_align)
+    xzoom 1.0
 
-define pos_center = default_chara_pos(0.5)
-define pos_left = default_chara_pos(0.35)
-define pos_right = default_chara_pos(0.65)
-define pos_far_left = default_chara_pos(0.0)
-define pos_far_right = default_chara_pos(1.0)
+transform chara_pos_f(x_align=0.5):
+    default_chara_pos(x_align)
+    xzoom -1.0
+
+transform default_chara_pos(x_align=0.5):
+    xanchor 0.5
+    yanchor 0.0
+    yalign 0.0
+    xalign x_align
+    zoom 0.75
+
+define pos_left      = chara_pos(0.35)
+define pos_center    = chara_pos(0.5)
+define pos_right     = chara_pos(0.65)
+define pos_far_left  = chara_pos(0.0)
+define pos_far_right = chara_pos(1.0)
+
+define pos_left_f      = chara_pos_f(0.35)
+define pos_center_f    = chara_pos_f(0.5)
+define pos_right_f     = chara_pos_f(0.65)
+define pos_far_left_f  = chara_pos_f(0.0)
+define pos_far_right_f = chara_pos_f(1.0)
 
 define standard_expressions = [
     "normal", "happy", "laugh", "blush", "shock", "angry",

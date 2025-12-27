@@ -5,7 +5,7 @@ label s02_kafe_pagi:
     scene kafe_siang 
     
     # SETUP AWAL SCENE
-    show bulan normal at pos_left
+    show bulan normal at pos_left_f
     show senja normal at pos_right
     
     call setExpr(['senja', 'bulan'], 'normal') 
@@ -40,7 +40,7 @@ label s02_enggaKo:
     show bulan normal at pos_center
     show senja normal at pos_far_right 
     with chara_move_transition
-    show hari normal at pos_far_left with default_chara_transition
+    show hari normal at pos_far_left_f with default_chara_transition
     
     call setExpr(['bulan', 'senja'], 'normal')
     call talk('hari', "HALO GESS", 'happy')
@@ -54,6 +54,7 @@ label s02_enggaKo:
     call setExpr(['senja', 'bulan', 'hari'], 'happy', True)
     all "GAS!!!"
 
+    show bulan shock at pos_center_f
     call setExpr(['hari', 'bulan'], 'shock')
     call talk('senja', 'ehh, aku udah dijemput ternyata...', 'sad')
 
@@ -64,7 +65,7 @@ label s02_enggaKo:
 
     hide senja with default_chara_transition
     
-    show hari normal at pos_left
+    show hari normal at pos_left_f
     show bulan normal at pos_right
     with chara_move_transition
 
